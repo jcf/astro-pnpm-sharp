@@ -1,0 +1,98 @@
+#+title: Astro + pnpm + Sharp
+
+* Contents                                                              :TOC:
+- [[#setup][Setup]]
+- [[#pnpm-install][=pnpm install=]]
+- [[#pnpm-list][=pnpm list=]]
+- [[#require-sharp][Require Sharp]]
+- [[#astro-error][Astro error]]
+
+* Setup
+Make sure you have Nix installed.
+
+#+begin_src sh
+nix develop --impure
+pnpm install
+pnpm dev
+#+end_src
+
+* =pnpm install=
+#+begin_src sh :results output verbatim
+pnpm install
+#+end_src
+
+#+results:
+#+begin_example
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 88, reused 71, downloaded 0, added 0
+Progress: resolved 337, reused 261, downloaded 0, added 0
+Progress: resolved 409, reused 333, downloaded 0, added 0
+Progress: resolved 478, reused 403, downloaded 0, added 0
+Progress: resolved 492, reused 417, downloaded 0, added 0
+Packages: +419
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 496, reused 421, downloaded 0, added 360
+Progress: resolved 496, reused 421, downloaded 0, added 419, done
+
+dependencies:
++ astro 4.5.16
++ sharp 0.33.3
+
+Done in 6.8s
+#+end_example
+
+* =pnpm list=
+#+begin_src sh :results output verbatim
+pnpm list --parseable sharp
+#+end_src
+
+#+results:
+: /Users/jcf/code/astro-pnpm-sharp
+: /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.33.3/node_modules/sharp
+
+* Require Sharp
+#+begin_src sh :results output verbatim
+node --eval 'console.log(Object.keys(require("sharp")));'
+#+end_src
+
+#+results:
+#+begin_example
+[
+  'align',      'gravity',
+  'strategy',   'kernel',
+  'fit',        'position',
+  'blend',      'colourspace',
+  'colorspace', 'bool',
+  'cache',      'concurrency',
+  'counters',   'simd',
+  'format',     'interpolators',
+  'versions',   'queue',
+  'block',      'unblock'
+]
+#+end_example
+
+* Astro error
+Even though we can load Sharp from inside Node, Astro blows up with the
+following:
+
+#+begin_example
+Could not process image request: MissingSharp: Could not find Sharp. Please install Sharp (`sharp`) manually into your project or migrate to another image service.
+    at loadSharp (/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/assets/services/sharp.js:19:11)
+    at async Object.transform (/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/assets/services/sharp.js:32:15)
+    at async Module.GET (/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/assets/endpoint/node.js:94:30)
+    at async renderEndpoint (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/runtime/server/endpoint.js:34:20)
+    at async callMiddleware (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/core/middleware/callMiddleware.js:11:10)
+    at async RenderContext.render (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/core/render-context.js:110:22)
+    at async handleRoute (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/vite-plugin-astro-server/route.js:212:18)
+    at async run (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/vite-plugin-astro-server/request.js:40:14)
+    at async runWithErrorHandling (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/vite-plugin-astro-server/controller.js:64:5)
+    at async handleRequest (file:///Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/astro@4.5.16_typescript@5.4.4/node_modules/astro/dist/vite-plugin-astro-server/request.js:34:3) {
+  loc: undefined,
+  title: 'Could not find Sharp.',
+  hint: "See Sharp's installation instructions for more information: https://sharp.pixelplumbing.com/install. If you are not relying on `astro:assets` to optimize, transform, or process any images, you can configure a passthrough image service instead of installing Sharp. See https://docs.astro.build/en/reference/errors/missing-sharp for more information.\n" +
+    '\n' +
+    'See https://docs.astro.build/en/guides/images/#default-image-service for more information on how to migrate to another image service.',
+  frame: undefined,
+  type: 'AstroError'
+}
+#+end_example

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "packageManager": "pnpm",
+  "scripts": {
+    "dev": "astro dev --host '0.0.0.0'"
+  },
+  "dependencies": {
+    "astro": "^4.5.16",
+    "sharp": "^0.33.3"
+  },
+  "devDependencies": {
+    "@astrojs/language-server": "^2.8.4"
+  }
+}
