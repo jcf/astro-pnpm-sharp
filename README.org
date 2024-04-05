@@ -6,6 +6,7 @@
 - [[#pnpm-list][=pnpm list=]]
 - [[#require-sharp][Require Sharp]]
 - [[#astro-error][Astro error]]
+- [[#pnpm-rebuild-sharp][=pnpm rebuild sharp=]]
 
 * Setup
 Make sure you have Nix installed.
@@ -95,4 +96,113 @@ Could not process image request: MissingSharp: Could not find Sharp. Please inst
   frame: undefined,
   type: 'AstroError'
 }
+#+end_example
+
+* =pnpm rebuild sharp=
+#+begin_src sh :results output verbatim
+pnpm rebuild --verbose sharp
+#+end_src
+
+#+results:
+#+begin_example
+.../sharp@0.32.6/node_modules/sharp install$ (node install/libvips && node install/dll-copy && prebuild-install) || (node install/can-compile && node-gyp rebuild && node install/dll-copy)
+.../sharp@0.33.3/node_modules/sharp install$ node install/check
+.../sharp@0.32.6/node_modules/sharp install: sharp: Detected globally-installed libvips v8.15.2
+.../sharp@0.32.6/node_modules/sharp install: sharp: Building from source via node-gyp
+.../sharp@0.33.3/node_modules/sharp install: sharp: Detected globally-installed libvips v8.15.2
+.../sharp@0.33.3/node_modules/sharp install: sharp: Attempting to build from source via node-gyp
+.../sharp@0.33.3/node_modules/sharp install: sharp: Found node-addon-api
+.../sharp@0.33.3/node_modules/sharp install: sharp: Please add node-gyp to your dependencies
+.../sharp@0.33.3/node_modules/sharp install: Done
+.../sharp@0.32.6/node_modules/sharp install: gyp info it worked if it ends with ok
+.../sharp@0.32.6/node_modules/sharp install: gyp verb cli [
+.../sharp@0.32.6/node_modules/sharp install: gyp verb cli   '/nix/store/j40phqwgkcbngyiv3vziyc8kx6axj471-nodejs-20.11.1/bin/node',
+.../sharp@0.32.6/node_modules/sharp install: gyp verb cli   '/nix/store/jj8gfv9a1gvmss4c4mvbsr2v9sp8wn8l-pnpm-8.15.5/lib/node_modules/pnpm/dist/node_modules/node-gyp/bin/node-gyp.js',
+.../sharp@0.32.6/node_modules/sharp install: gyp verb cli   'rebuild'
+.../sharp@0.32.6/node_modules/sharp install: gyp verb cli ]
+.../sharp@0.32.6/node_modules/sharp install: gyp info using node-gyp@9.4.1
+.../sharp@0.32.6/node_modules/sharp install: gyp info using node@20.11.1 | darwin | arm64
+.../sharp@0.32.6/node_modules/sharp install: gyp verb command rebuild []
+.../sharp@0.32.6/node_modules/sharp install: gyp verb command clean []
+.../sharp@0.32.6/node_modules/sharp install: gyp verb clean removing "build" directory
+.../sharp@0.32.6/node_modules/sharp install: gyp verb command configure []
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python Python is not set from command line or npm configuration
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python Python is not set from environment variable PYTHON
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python checking if "python3" can be used
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python - executing "python3" to get executable path
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python - executable path is "/nix/store/j0jaqv09421wydqmfawcnwvv2f32q86a-python3-3.11.8/bin/python3"
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python - executing "/nix/store/j0jaqv09421wydqmfawcnwvv2f32q86a-python3-3.11.8/bin/python3" to get version
+.../sharp@0.32.6/node_modules/sharp install: gyp verb find Python - version is "3.11.8"
+.../sharp@0.32.6/node_modules/sharp install: gyp info find Python using Python version 3.11.8 found at "/nix/store/j0jaqv09421wydqmfawcnwvv2f32q86a-python3-3.11.8/bin/python3"
+.../sharp@0.32.6/node_modules/sharp install: gyp verb get node dir no --target version specified, falling back to host node version: 20.11.1
+.../sharp@0.32.6/node_modules/sharp install: gyp verb command install [ '20.11.1' ]
+.../sharp@0.32.6/node_modules/sharp install: gyp verb install input version string "20.11.1"
+.../sharp@0.32.6/node_modules/sharp install: gyp verb install installing version: 20.11.1
+.../sharp@0.32.6/node_modules/sharp install: gyp verb install --ensure was passed, so won't reinstall if already installed
+.../sharp@0.32.6/node_modules/sharp install: gyp verb install version is already installed, need to check "installVersion"
+.../sharp@0.32.6/node_modules/sharp install: gyp verb got "installVersion" 11
+.../sharp@0.32.6/node_modules/sharp install: gyp verb needs "installVersion" 11
+.../sharp@0.32.6/node_modules/sharp install: gyp verb install version is good
+.../sharp@0.32.6/node_modules/sharp install: gyp verb get node dir target node version installed: 20.11.1
+.../sharp@0.32.6/node_modules/sharp install: gyp verb build dir attempting to create "build" dir: /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build
+.../sharp@0.32.6/node_modules/sharp install: gyp verb build dir "build" dir needed to be created? Yes
+.../sharp@0.32.6/node_modules/sharp install: gyp verb python symlink creating symlink to "/nix/store/j0jaqv09421wydqmfawcnwvv2f32q86a-python3-3.11.8/bin/python3" at "/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build/node_gyp_bins/python3"
+.../sharp@0.32.6/node_modules/sharp install: gyp verb build/config.gypi creating config file
+.../sharp@0.32.6/node_modules/sharp install: gyp verb build/config.gypi writing out config file: /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build/config.gypi
+.../sharp@0.32.6/node_modules/sharp install: gyp verb config.gypi checking for gypi file: /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/config.gypi
+.../sharp@0.32.6/node_modules/sharp install: gyp verb common.gypi checking for gypi file: /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/common.gypi
+.../sharp@0.32.6/node_modules/sharp install: gyp verb gyp gyp format was not specified; forcing "make"
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn /nix/store/j0jaqv09421wydqmfawcnwvv2f32q86a-python3-3.11.8/bin/python3
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args [
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '/nix/store/jj8gfv9a1gvmss4c4mvbsr2v9sp8wn8l-pnpm-8.15.5/lib/node_modules/pnpm/dist/node_modules/node-gyp/gyp/gyp_main.py',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   'binding.gyp',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-f',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   'make',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-I',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build/config.gypi',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-I',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '/nix/store/jj8gfv9a1gvmss4c4mvbsr2v9sp8wn8l-pnpm-8.15.5/lib/node_modules/pnpm/dist/node_modules/node-gyp/addon.gypi',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-I',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '/Users/jcf/Library/Caches/node-gyp/20.11.1/include/node/common.gypi',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dlibrary=shared_library',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dvisibility=default',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dnode_root_dir=/Users/jcf/Library/Caches/node-gyp/20.11.1',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dnode_gyp_dir=/nix/store/jj8gfv9a1gvmss4c4mvbsr2v9sp8wn8l-pnpm-8.15.5/lib/node_modules/pnpm/dist/node_modules/node-gyp',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dnode_lib_file=/Users/jcf/Library/Caches/node-gyp/20.11.1/<(target_arch)/node.lib',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dmodule_root_dir=/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Dnode_engine=v8',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '--depth=.',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '--no-parallel',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '--generator-output',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   'build',
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args   '-Goutput_dir=.'
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args ]
+.../sharp@0.32.6/node_modules/sharp install: gyp verb command build []
+.../sharp@0.32.6/node_modules/sharp install: gyp verb build type Release
+.../sharp@0.32.6/node_modules/sharp install: gyp verb architecture arm64
+.../sharp@0.32.6/node_modules/sharp install: gyp verb node dev dir /Users/jcf/Library/Caches/node-gyp/20.11.1
+.../sharp@0.32.6/node_modules/sharp install: gyp verb `which` succeeded for `make` /nix/store/b8fn7032mmzhyzw4ykbjwd0qfwxwr2ds-gnumake-4.4.1/bin/make
+.../sharp@0.32.6/node_modules/sharp install: gyp verb bin symlinks adding symlinks (such as Python), at "/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build/node_gyp_bins", to PATH
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn make
+.../sharp@0.32.6/node_modules/sharp install: gyp info spawn args [ 'V=1', 'BUILDTYPE=Release', '-C', 'build' ]
+.../sharp@0.32.6/node_modules/sharp install: make: Entering directory '/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build'
+.../sharp@0.32.6/node_modules/sharp install:   clang -o Release/obj.target/nothing/../../../node-addon-api@6.1.0/node_modules/node-addon-api/nothing.o ../../../../node-addon-api@6.1.0/node_modules/node-addon-api/nothing.c '-DNODE_GYP_MODULE_NAME=nothing' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_GLIBCXX_USE_CXX11_ABI=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' -I/Users/jcf/Library/Caches/node-gyp/20.11.1/include/node -I/Users/jcf/Library/Caches/node-gyp/20.11.1/src -I/Users/jcf/Library/Caches/node-gyp/20.11.1/deps/openssl/config -I/Users/jcf/Library/Caches/node-gyp/20.11.1/deps/openssl/openssl/include -I/Users/jcf/Library/Caches/node-gyp/20.11.1/deps/uv/include -I/Users/jcf/Library/Caches/node-gyp/20.11.1/deps/zlib -I/Users/jcf/Library/Caches/node-gyp/20.11.1/deps/v8/include  -O3 -gdwarf-2 -mmacosx-version-min=10.15 -arch arm64 -Wall -Wendif-labels -W -Wno-unused-parameter -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/nothing/../../../node-addon-api@6.1.0/node_modules/node-addon-api/nothing.o.d.raw   -c
+.../sharp@0.32.6/node_modules/sharp install:   rm -f Release/nothing.a && ./gyp-mac-tool filter-libtool libtool  -static -o Release/nothing.a Release/obj.target/nothing/../../../node-addon-api@6.1.0/node_modules/node-addon-api/nothing.o
+.../sharp@0.32.6/node_modules/sharp install: Usage: /etc/profiles/per-user/jcf/bin/libtool [OPTION]... [MODE-ARG]...
+.../sharp@0.32.6/node_modules/sharp install: Try 'libtool --help' for more information.
+.../sharp@0.32.6/node_modules/sharp install: libtool:   error: unrecognised option: '-static'
+.../sharp@0.32.6/node_modules/sharp install: make: *** [../../../node-addon-api@6.1.0/node_modules/node-addon-api/nothing.target.mk:155: Release/nothing.a] Error 1
+.../sharp@0.32.6/node_modules/sharp install: make: Leaving directory '/Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp/build'
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! build error
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! stack Error: `make` failed with exit code: 2
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! stack     at ChildProcess.onExit (/nix/store/jj8gfv9a1gvmss4c4mvbsr2v9sp8wn8l-pnpm-8.15.5/lib/node_modules/pnpm/dist/node_modules/node-gyp/lib/build.js:203:23)
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! stack     at ChildProcess.emit (node:events:518:28)
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! stack     at ChildProcess._handle.onexit (node:internal/child_process:294:12)
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! System Darwin 23.4.0
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! command "/nix/store/j40phqwgkcbngyiv3vziyc8kx6axj471-nodejs-20.11.1/bin/node" "/nix/store/jj8gfv9a1gvmss4c4mvbsr2v9sp8wn8l-pnpm-8.15.5/lib/node_modules/pnpm/dist/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! cwd /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.32.6/node_modules/sharp
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! node -v v20.11.1
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! node-gyp -v v9.4.1
+.../sharp@0.32.6/node_modules/sharp install: gyp ERR! not ok
+.../sharp@0.32.6/node_modules/sharp install: Failed
 #+end_example
