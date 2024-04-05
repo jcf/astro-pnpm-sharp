@@ -10,14 +10,14 @@
 * Setup
 Make sure you have Nix installed.
 
-#+begin_src sh
+#+begin_src sh :eval never
 nix develop --impure
 pnpm install
 pnpm dev
 #+end_src
 
 * =pnpm install=
-#+begin_src sh :results output verbatim
+#+begin_src sh :results output verbatim :exports both
 pnpm install
 #+end_src
 
@@ -42,7 +42,7 @@ Done in 6.8s
 #+end_example
 
 * =pnpm list=
-#+begin_src sh :results output verbatim
+#+begin_src sh :results output verbatim :exports both
 pnpm list --parseable sharp
 #+end_src
 
@@ -51,7 +51,7 @@ pnpm list --parseable sharp
 : /Users/jcf/code/astro-pnpm-sharp/node_modules/.pnpm/sharp@0.33.3/node_modules/sharp
 
 * Require Sharp
-#+begin_src sh :results output verbatim
+#+begin_src sh :results output verbatim :exports both
 node --eval 'console.log(Object.keys(require("sharp")));'
 #+end_src
 
