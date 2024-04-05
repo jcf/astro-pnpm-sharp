@@ -7,6 +7,8 @@
 - [[#require-sharp][Require Sharp]]
 - [[#astro-error][Astro error]]
 - [[#pnpm-rebuild-sharp][=pnpm rebuild sharp=]]
+- [[#libtool-unrecognized-option--static-when-building][libtool: unrecognized option -static when building]]
+  - [[#which-libtool][=which libtool=]]
 
 * Setup
 Make sure you have Nix installed.
@@ -206,3 +208,19 @@ pnpm rebuild --verbose sharp
 .../sharp@0.32.6/node_modules/sharp install: gyp ERR! not ok
 .../sharp@0.32.6/node_modules/sharp install: Failed
 #+end_example
+
+* libtool: unrecognized option -static when building
+A little searching around turns up a long [[https://github.com/nodejs/node/issues/2341][history of problems]] stemming from
+Node.js tooling relying on whatever version of =libtool= it finds on one's PATH.
+
+As the projects themselves haven't come up with a solution in nearly ten years
+and people are still encountering issues as of three days ago the only option is
+to remove GNU versions of =libtool= from one's PATH.
+
+** =which libtool=
+#+begin_src sh :results output verbatim :exports both
+which -a libtool
+#+end_src
+
+#+results:
+: /usr/bin/libtool
